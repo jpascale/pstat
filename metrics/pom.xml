@@ -13,6 +13,11 @@
     <name>metrics</name>
     <dependencies>
         <dependency>
+            <groupId>ar.edu.itba.protos</groupId>
+            <artifactId>models</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${org.slf4j.version}</version>

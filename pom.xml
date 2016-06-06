@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>metrics</module>
+        <module>models</module>
     </modules>
     <properties>
     <org.slf4j.version>1.7.5</org.slf4j.version>
