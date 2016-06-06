@@ -16,7 +16,7 @@ public class Main {
 
         LOG.info("Right amount of arguments");
 
-        
+
 
 
 
