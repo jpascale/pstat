@@ -1,6 +1,8 @@
 package ar.edu.itba.protos.pstat.main;
 
 import ar.edu.itba.protos.pstat.configuration.Configuration;
+import ar.edu.itba.protos.pstat.metrics.MetricsClient;
+import ar.edu.itba.protos.pstat.metrics.PstatProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -43,6 +45,8 @@ public class Main {
 
         LOG.info("Loaded values => ip: {}, port: {}", metricsIp, metricsPort);
 
+        MetricsClient mc = new MetricsClient(metricsIp, metricsPort, new PstatProtocol());
+        mc.start();
 
     }
 }
