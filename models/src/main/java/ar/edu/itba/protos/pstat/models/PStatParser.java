@@ -11,7 +11,10 @@ public class PStatParser {
     private static final String PREFIX_POSITIVE = "+OK";
     private static final String PREFIX_NEGATIVE = "-ERR";
 
-    private static final String METRIC_OK_HEADER = "+OK Metric values follows\r\n";
+    public static final String METRIC_OK_HEADER = "+OK Metric values follows";
+    public static final String METRIC_ERR_HEADER = "-ERR";
+
+
     private static final String METRIC_EOF = ".\r\n";
     private static final String METRIC_VALUE_SEPARATOR = " = ";
 
@@ -38,13 +41,13 @@ public class PStatParser {
         //TODO: Implement
     }
 
-    public Metric parse(String response){
+    public Metric parseMetrics(String response){
         LOG.info("Parsing response => \n {}", response);
 
         Metric.Builder builder = new Metric.Builder();
         //String subtring method is efficient due to offset usage;
         //Remove OK_HEADER and EOF
-        final String str = response.substring(METRIC_OK_HEADER.length(), response.length() - METRIC_EOF.length());
+        final String str = response.substring((METRIC_OK_HEADER + CRLF).length(), response.length() - METRIC_EOF.length());
         final String[] arr = str.split(CRLF);
 
         LOG.info("Parsing splited array length => {}", arr.length);
@@ -76,5 +79,9 @@ public class PStatParser {
 
         return metric;
     }
+
+    public String getHeader(String response){
+        return response.split(CRLF)[0];
+    };
 
 }

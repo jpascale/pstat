@@ -63,7 +63,6 @@ public class MetricsClient implements Runnable {
     public void run(){
         LOG.info(".");
         final ByteBuffer readBuf = ByteBuffer.allocate(RESPONSE_BFF_SIZE);
-        final PStatParser parser = new PStatParser();
         boolean gotResponse = false;
         //____________________________________________________
         try {
@@ -90,6 +89,7 @@ public class MetricsClient implements Runnable {
             //TODO: Parse and send received to protocol.
             LOG.info("Response received from server, proceed to call handler");
             final String response = new String(readBuf.array(), 0, totalBytesRcvd);
+
             protocol.handle(response);
 
             //Metric metric = parser.parse(new String(readBuf.array(), 0, totalBytesRcvd));
