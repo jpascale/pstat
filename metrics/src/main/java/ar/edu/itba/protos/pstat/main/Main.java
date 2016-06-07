@@ -1,6 +1,7 @@
 package ar.edu.itba.protos.pstat.main;
 
 import ar.edu.itba.protos.pstat.configuration.Configuration;
+import ar.edu.itba.protos.pstat.frontend.FrmMain;
 import ar.edu.itba.protos.pstat.metrics.MetricsClient;
 import ar.edu.itba.protos.pstat.metrics.PStatProtocol;
 import org.slf4j.Logger;
@@ -58,6 +59,9 @@ public class Main {
 
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
             executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
+
+            new FrmMain().start();
+
         } catch (IOException e){
             e.printStackTrace();
             //TODO: Do sth
