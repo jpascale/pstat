@@ -12,6 +12,7 @@
         <module>metrics</module>
         <module>models</module>
         <module>interfaces</module>
+        <module>frontend</module>
     </modules>
     <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
