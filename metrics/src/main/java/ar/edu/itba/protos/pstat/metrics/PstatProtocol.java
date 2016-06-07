@@ -1,5 +1,8 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 
-public class PstatProtocol {
+import ar.edu.itba.protos.pstat.interfaces.Protocol;
+
+public class PstatProtocol implements Protocol {
+
 }

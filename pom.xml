@@ -11,6 +11,7 @@
     <modules>
         <module>metrics</module>
         <module>models</module>
+        <module>interfaces</module>
     </modules>
     <properties>
     <org.slf4j.version>1.7.5</org.slf4j.version>
@@ -26,7 +27,7 @@
         <version>${maven-war-plugin.version}</version>
         <configuration>
           <packagingExcludes>**/logback-test.xml</packagingExcludes>
-        </configuration>
+	</configuration>
       </plugin>
     </plugins>
   </build>

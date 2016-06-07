@@ -17,6 +17,11 @@
             <artifactId>models</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
+	<dependency>
+	    <groupId>ar.edu.itba.protos</groupId>
+	    <artifactId>interfaces</artifactId>
+	    <version>${prject.parent.version}</version>
+	</dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -41,6 +46,11 @@
             <groupId>org.logback-extensions</groupId>
             <artifactId>logback-ext-spring</artifactId>
             <version>${logback-ext-spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>ar.edu.itba.protos</groupId>
+            <artifactId>interfaces</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
     </dependencies>

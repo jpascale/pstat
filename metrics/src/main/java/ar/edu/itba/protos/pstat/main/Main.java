@@ -8,10 +8,18 @@ import org.slf4j.LoggerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Main {
 
+    //Main Logger info
     private static final Logger LOG = LoggerFactory.getLogger(Main.class.getSimpleName());
+
+    //Requests timer in seconds
+    private static final Integer CLIENT_TIMER = 1;
+
 
     public static void main (String[] args){
         if (args.length != 1){
@@ -46,7 +54,8 @@ public class Main {
         LOG.info("Loaded values => ip: {}, port: {}", metricsIp, metricsPort);
 
         MetricsClient mc = new MetricsClient(metricsIp, metricsPort, new PstatProtocol());
-        mc.start();
 
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
     }
 }
