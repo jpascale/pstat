@@ -9,14 +9,18 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.DefaultXYDataset;
 import org.jfree.data.xy.XYDataset;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 
 public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Runnable {
 
+    private static final Logger LOG = LoggerFactory.getLogger(DownloadedBytesChart.class.getSimpleName());
+
     @Override
     public void run() {
-        JFrame frame = new JFrame("Charts");
+        JFrame frame = new JFrame("Downloaded bytes chart");
 
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,7 +38,7 @@ public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Run
 
     @Override
     public void handleUpdate(DownloadedBytesMeter data) {
-
+        LOG.info("Handle update called in DownloadedBytesChart");
     }
 
     private static XYDataset createDataset() {

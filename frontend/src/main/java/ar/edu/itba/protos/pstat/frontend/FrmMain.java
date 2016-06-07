@@ -4,10 +4,17 @@ import javax.swing.*;
 
 public class FrmMain {
 
-    public void start(){
-        SwingUtilities.invokeLater(new DownloadedBytesChart());
+    private DownloadedBytesChart downloadedBytesChart;
+
+    public FrmMain(){
+        downloadedBytesChart = new DownloadedBytesChart();
     }
 
+    public void start(){
+        SwingUtilities.invokeLater(downloadedBytesChart);
+    }
 
-
+    public DownloadedBytesChart getDownloadedBytesChart() {
+        return downloadedBytesChart;
+    }
 }

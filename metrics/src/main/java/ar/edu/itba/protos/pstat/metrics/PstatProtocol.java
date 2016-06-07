@@ -1,7 +1,9 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 
+import ar.edu.itba.protos.pstat.interfaces.Observer;
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
+import ar.edu.itba.protos.pstat.models.DownloadedBytesMeter;
 import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
 import org.slf4j.Logger;
@@ -9,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class PStatProtocol implements Protocol {
 
+    //TODO: Create builder for observers;
 
     private static final Logger LOG = LoggerFactory.getLogger(PStatProtocol.class.getSimpleName());
     private static final Integer ERR_TOLERANCE = 5;
@@ -16,8 +19,11 @@ public class PStatProtocol implements Protocol {
 
     private Integer errCount = 0;
 
+    private final DownloadedBytesMeter downloadedBytesMeter;
+
     public PStatProtocol(){
-            parser = new PStatParser();
+        parser = new PStatParser();
+        downloadedBytesMeter = new DownloadedBytesMeter();
     }
 
     @Override
@@ -34,6 +40,7 @@ public class PStatProtocol implements Protocol {
             case PStatParser.METRIC_OK_HEADER:
                 metric = parser.parseMetrics(response);
                 LOG.info("Metric generated => {}", metric);
+                handleMeterUpdate(metric);
                 break;
 
             case PStatParser.METRIC_ERR_HEADER:
@@ -46,5 +53,13 @@ public class PStatProtocol implements Protocol {
                 break;
         }
 
+    }
+
+    private void handleMeterUpdate(Metric metric) {
+        downloadedBytesMeter.addMetric(metric.getDownloadedBytes());
+    }
+
+    public void setDownloadedBytesMeterObserver(Observer<DownloadedBytesMeter> obs){
+        downloadedBytesMeter.addObserver(obs);
     }
 }

@@ -55,7 +55,13 @@ public class Main {
         LOG.info("Loaded values => ip: {}, port: {}", metricsIp, metricsPort);
 
         try {
-            MetricsClient mc = new MetricsClient(metricsIp, metricsPort, new PStatProtocol());
+            final FrmMain frmMain = new FrmMain();
+
+            final PStatProtocol pstatProtocol = new PStatProtocol();
+            pstatProtocol.setDownloadedBytesMeterObserver(frmMain.getDownloadedBytesChart());
+
+            final MetricsClient mc = new MetricsClient(metricsIp, metricsPort, pstatProtocol);
+
 
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
             executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);

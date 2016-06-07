@@ -21,6 +21,7 @@ public class DownloadedBytesMeter implements Observable {
     public void addMetric(Integer metric){
         map.put(order, metric);
         order++;
+        notifyObservers();
     }
 
     //TODO: Add interface
