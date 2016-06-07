@@ -14,10 +14,13 @@
         <module>interfaces</module>
     </modules>
     <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <org.slf4j.version>1.7.5</org.slf4j.version>
     <logback.version>1.1.2</logback.version>
     <logback-ext-spring.version>0.1.1</logback-ext-spring.version>
     <maven-war-plugin.version>2.6</maven-war-plugin.version>
+    <jfreechart.version>1.0.19</jfreechart.version>
   </properties>
   <build>
     <plugins>
@@ -58,6 +61,13 @@
       <version>${logback-ext-spring.version}</version>
       <scope>runtime</scope>
     </dependency>
+    <!-- http://mvnrepository.com/artifact/org.jfree/jfreechart -->
+    <dependency>
+      <groupId>org.jfree</groupId>
+      <artifactId>jfreechart</artifactId>
+      <version>${jfreechart.version}</version>
+    </dependency>
+
   </dependencies>
 
 </project>
