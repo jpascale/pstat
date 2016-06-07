@@ -2,7 +2,7 @@ package ar.edu.itba.protos.pstat.main;
 
 import ar.edu.itba.protos.pstat.configuration.Configuration;
 import ar.edu.itba.protos.pstat.metrics.MetricsClient;
-import ar.edu.itba.protos.pstat.metrics.PstatProtocol;
+import ar.edu.itba.protos.pstat.metrics.PStatProtocol;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,8 +21,8 @@ public class Main {
     private static final Integer CLIENT_TIMER = 1;
 
 
-    public static void main (String[] args){
-        if (args.length != 1){
+    public static void main (String[] args) {
+        if (args.length != 1) {
             System.out.println("Invalid amount of arguments. Path to the config file is needed.");
             LOG.error("Invalid amount of arguments");
             System.exit(1);
@@ -53,9 +53,14 @@ public class Main {
 
         LOG.info("Loaded values => ip: {}, port: {}", metricsIp, metricsPort);
 
-        MetricsClient mc = new MetricsClient(metricsIp, metricsPort, new PstatProtocol());
+        try {
+            MetricsClient mc = new MetricsClient(metricsIp, metricsPort, new PStatProtocol());
 
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
+            ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+            executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
+        } catch (IOException e){
+            e.printStackTrace();
+            //TODO: Do sth
+        }
     }
 }

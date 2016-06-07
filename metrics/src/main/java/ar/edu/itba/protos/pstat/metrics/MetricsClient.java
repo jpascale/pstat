@@ -1,6 +1,7 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
+import ar.edu.itba.protos.pstat.models.PStatParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,8 @@ public class MetricsClient implements Runnable {
     //Main Logger info
     private static final Logger LOG = LoggerFactory.getLogger(MetricsClient.class.getSimpleName());
 
-    private static final String METRICS_REQUEST = "getmetrics";
+    private static final String METRICS_REQUEST = "getmetrics\r\n";
+    private static final Integer RESPONSE_BFF_SIZE = 1024;
 
     private final String ip;
     private final Integer port;
@@ -32,44 +34,67 @@ public class MetricsClient implements Runnable {
 
         channel = SocketChannel.open();
         channel.configureBlocking(false);
-    }
 
-
-
-
-    public void run() {
-        LOG.info("Running Metrics client Task");
-        LOG.info("Metrics: Ip => {}, Port => {}", ip, port);
-
-        //____________________________________________________
         // Initiate connection to server and repeatedly poll until complete
         if (!channel.connect(new InetSocketAddress(ip, port))) {
-            while (!clntChan.finishConnect()) {
+            while (!channel.finishConnect()) {
                 System.out.print("."); // Do something else
+                try {
+                    Thread.sleep(1000);
+                }catch (Exception e){
+                    //TODO:Remove
+                }
             }
         }
 
-        final ByteBuffer writeBuffer = ByteBuffer.wrap(METRICS_REQUEST);
+        LOG.info("Metrics client Task");
+        LOG.info("Metrics: Ip => {}, Port => {}", ip, port);
 
-        ByteBuffer writeBuf = ByteBuffer.wrap(request);
-
-        int totalBytesRcvd = 0;
+        final ByteBuffer readBuf = ByteBuffer.allocate(RESPONSE_BFF_SIZE);
         int bytesRcvd;
-
-        while (totalBytesRcvd < argument.length) {
-            if (writeBuf.hasRemaining()) {
-                clntChan.write(writeBuf);
-            }
-            if ((bytesRcvd = clntChan.read(readBuf)) == -1) {
-                throw new SocketException("Connection closed prematurely");
-            }
-            totalBytesRcvd += bytesRcvd;
-            System.out.print("."); // Do something else
+        if ((bytesRcvd = channel.read(readBuf)) == -1) {
+            throw new SocketException("Connection closed prematurely");
         }
-        System.out.println("Received: " + // convert to String per default
-                // charset
-                new String(readBuf.array(), 0, totalBytesRcvd));
-        clntChan.close();
+
+        LOG.info("Received: {}", new String(readBuf.array(), 0, bytesRcvd));
+    }
+
+    public void run(){
+        LOG.info(".");
+        final ByteBuffer readBuf = ByteBuffer.allocate(RESPONSE_BFF_SIZE);
+        final PStatParser parser = new PStatParser();
+        boolean gotResponse = false;
+        //____________________________________________________
+        try {
+
+            ByteBuffer writeBuf = ByteBuffer.wrap(request);
+
+            int totalBytesRcvd = 0;
+            int bytesRcvd;
+
+            //while (totalBytesRcvd < argument.length) {
+            while (!gotResponse){
+                if (writeBuf.hasRemaining()) {
+                    channel.write(writeBuf);
+                }
+                if ((bytesRcvd = channel.read(readBuf)) == -1) {
+                    throw new SocketException("Connection closed prematurely");
+                }
+
+                gotResponse = PStatParser.gotResponse(new String(readBuf.array(), 0, totalBytesRcvd));
+
+                totalBytesRcvd += bytesRcvd;
+                //System.out.print("."); // Do something else
+            }
+
+            System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));
+            //TODO: Parse and send received to protocol.
+
+            //channel.close();
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
         //____________________________________________________
     }
 }
