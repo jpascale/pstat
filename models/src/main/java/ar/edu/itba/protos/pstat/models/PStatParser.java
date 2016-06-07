@@ -22,7 +22,8 @@ public class PStatParser {
     private static final String METRIC_PARSED_BYTES = "PARSED_BYTES";
 
     public static boolean gotResponse(String response) {
-        return response.endsWith("." + CRLF);
+        return (response.startsWith(PREFIX_POSITIVE) && response.endsWith("." + CRLF)) ||
+                (response.startsWith(PREFIX_NEGATIVE) && response.endsWith(CRLF));
     }
 
     public static boolean isPositive(String response) {

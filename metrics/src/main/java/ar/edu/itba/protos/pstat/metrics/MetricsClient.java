@@ -1,7 +1,6 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
-import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +57,7 @@ public class MetricsClient implements Runnable {
         }
         //TODO: Evaluate answer
         LOG.info("Received: {}", new String(readBuf.array(), 0, bytesRcvd));
+
     }
 
     public void run(){
@@ -86,11 +86,13 @@ public class MetricsClient implements Runnable {
                 totalBytesRcvd += bytesRcvd;
             }
 
-            System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));
+            //System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));
             //TODO: Parse and send received to protocol.
+            LOG.info("Response received from server, proceed to call handler");
+            final String response = new String(readBuf.array(), 0, totalBytesRcvd);
+            protocol.handle(response);
 
-            Metric metric = parser.parse(new String(readBuf.array(), 0, totalBytesRcvd));
-
+            //Metric metric = parser.parse(new String(readBuf.array(), 0, totalBytesRcvd));
             //channel.close();
 
         } catch (IOException e){

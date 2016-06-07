@@ -7,6 +7,8 @@ public class Metric {
 
     private static final Logger LOG = LoggerFactory.getLogger(Metric.class.getSimpleName());
 
+    private static final int ZERO = 0;
+
     private final Integer newConnection;
     private final Integer disconnection;
     private final Integer uploadedBytes;
@@ -52,6 +54,16 @@ public class Metric {
 
     public Integer getParsedBytes() {
         return parsedBytes;
+    }
+
+    public Metric getNullMetric(){
+
+        return new Builder().newConnection(ZERO)
+                            .disconnection(ZERO)
+                            .uploadedBytes(ZERO)
+                            .downloadedBytes(ZERO)
+                            .parsedBytes(ZERO)
+                            .build();
     }
 
     //Implemented taking into account new metrics could be implemented
