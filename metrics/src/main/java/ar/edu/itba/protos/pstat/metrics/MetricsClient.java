@@ -1,6 +1,7 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
+import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,7 +56,7 @@ public class MetricsClient implements Runnable {
         if ((bytesRcvd = channel.read(readBuf)) == -1) {
             throw new SocketException("Connection closed prematurely");
         }
-
+        //TODO: Evaluate answer
         LOG.info("Received: {}", new String(readBuf.array(), 0, bytesRcvd));
     }
 
@@ -72,7 +73,6 @@ public class MetricsClient implements Runnable {
             int totalBytesRcvd = 0;
             int bytesRcvd;
 
-            //while (totalBytesRcvd < argument.length) {
             while (!gotResponse){
                 if (writeBuf.hasRemaining()) {
                     channel.write(writeBuf);
@@ -84,16 +84,18 @@ public class MetricsClient implements Runnable {
                 gotResponse = PStatParser.gotResponse(new String(readBuf.array(), 0, totalBytesRcvd));
 
                 totalBytesRcvd += bytesRcvd;
-                //System.out.print("."); // Do something else
             }
 
             System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));
             //TODO: Parse and send received to protocol.
 
+            Metric metric = parser.parse(new String(readBuf.array(), 0, totalBytesRcvd));
+
             //channel.close();
 
         } catch (IOException e){
             e.printStackTrace();
+            //TODO: Handle
         }
         //____________________________________________________
     }

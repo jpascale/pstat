@@ -1,6 +1,11 @@
 package ar.edu.itba.protos.pstat.models;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Metric {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Metric.class.getSimpleName());
 
     private final Integer newConnection;
     private final Integer disconnection;
@@ -14,6 +19,19 @@ public class Metric {
         this.uploadedBytes = builder.uploadedBytes;
         this.downloadedBytes = builder.downloadedBytes;
         this.parsedBytes = builder.parsedBytes;
+
+        LOG.info("Creating Metric: builder => {}", builder);
+    }
+
+    @Override
+    public String toString() {
+        return "Metric{" +
+                "newConnection=" + newConnection +
+                ", disconnection=" + disconnection +
+                ", uploadedBytes=" + uploadedBytes +
+                ", downloadedBytes=" + downloadedBytes +
+                ", parsedBytes=" + parsedBytes +
+                '}';
     }
 
     public Integer getNewConnection() {
@@ -37,7 +55,7 @@ public class Metric {
     }
 
     //Implemented taking into account new metrics could be implemented
-    public class Builder{
+    public static class Builder{
 
         private Integer newConnection;
         private Integer disconnection;
@@ -52,6 +70,46 @@ public class Metric {
             this.uploadedBytes = uploadedBytes;
             this.downloadedBytes = downloadedBytes;
             this.parsedBytes = parsedBytes;
+        }
+
+        public Builder(){
+
+        }
+
+        @Override
+        public String toString() {
+            return "Builder{" +
+                    "newConnection=" + newConnection +
+                    ", disconnection=" + disconnection +
+                    ", uploadedBytes=" + uploadedBytes +
+                    ", downloadedBytes=" + downloadedBytes +
+                    ", parsedBytes=" + parsedBytes +
+                    '}';
+        }
+
+        public Builder newConnection(Integer newConnection) {
+            this.newConnection = newConnection;
+            return this;
+        }
+
+        public Builder disconnection(Integer disconnection) {
+            this.disconnection = disconnection;
+            return this;
+        }
+
+        public Builder uploadedBytes(Integer uploadedBytes) {
+            this.uploadedBytes = uploadedBytes;
+            return this;
+        }
+
+        public Builder downloadedBytes(Integer downloadedBytes) {
+            this.downloadedBytes = downloadedBytes;
+            return this;
+        }
+
+        public Builder parsedBytes(Integer parsedBytes) {
+            this.parsedBytes = parsedBytes;
+            return this;
         }
 
         public Metric build(){
