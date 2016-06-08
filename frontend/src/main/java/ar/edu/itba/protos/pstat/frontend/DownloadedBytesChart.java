@@ -62,12 +62,15 @@ public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Run
         ChartPanel cp = new ChartPanel(chart);
         LOG.info("Added to chart panel");
 
-        frame.getContentPane().remove(0);
+
+        frame.getContentPane().removeAll();
+        frame.getContentPane().revalidate();
+
         frame.getContentPane().add(cp);
+;
         LOG.info("Add to content pane");
         frame.getContentPane().repaint();
         LOG.info("Content pane repaint");
-        
 
     }
 
