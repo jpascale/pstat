@@ -18,27 +18,57 @@ public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Run
 
     private static final Logger LOG = LoggerFactory.getLogger(DownloadedBytesChart.class.getSimpleName());
 
+    private JFrame frame;
+    private ChartPanel cp;
+
+    public DownloadedBytesChart(JFrame frame){
+        this.frame = frame;
+    }
+
     @Override
     public void run() {
-        JFrame frame = new JFrame("Downloaded bytes chart");
+        LOG.info("Calling run method.");
+
+        frame = new JFrame("Downloaded bytes chart");
 
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
+        //TODO:REMOVE
 
         XYDataset ds = createDataset();
         JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
                 "x", "y", ds, PlotOrientation.VERTICAL, true, true,
                 false);
 
-        ChartPanel cp = new ChartPanel(chart);
+        cp = new ChartPanel(chart);
 
-        frame.getContentPane().add(cp);
+        frame.getContentPane().add("hola", cp);
     }
 
     @Override
     public void handleUpdate(DownloadedBytesMeter data) {
         LOG.info("Handle update called in DownloadedBytesChart");
+
+        DefaultXYDataset ds = new DefaultXYDataset();
+        ds.addSeries("test", data.getMetricArray());
+
+        JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
+                "x", "y", ds, PlotOrientation.VERTICAL, true, true,
+                false);
+
+        LOG.info("New chart created");
+
+        ChartPanel cp = new ChartPanel(chart);
+        LOG.info("Added to chart panel");
+
+        frame.getContentPane().remove(0);
+        frame.getContentPane().add(cp);
+        LOG.info("Add to content pane");
+        frame.getContentPane().repaint();
+        LOG.info("Content pane repaint");
+        
+
     }
 
     private static XYDataset createDataset() {

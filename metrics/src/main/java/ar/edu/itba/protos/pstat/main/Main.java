@@ -56,6 +56,7 @@ public class Main {
 
         try {
             final FrmMain frmMain = new FrmMain();
+            frmMain.start();
 
             final PStatProtocol pstatProtocol = new PStatProtocol();
             pstatProtocol.setDownloadedBytesMeterObserver(frmMain.getDownloadedBytesChart());
@@ -63,10 +64,11 @@ public class Main {
             final MetricsClient mc = new MetricsClient(metricsIp, metricsPort, pstatProtocol);
 
 
+
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
             executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
 
-            new FrmMain().start();
+            //new FrmMain().start();
 
         } catch (IOException e){
             e.printStackTrace();
