@@ -31,6 +31,18 @@ public class PStatProtocol implements Protocol {
             case DOWNLOADED_BYTES:
                 meter = new SimpleMeter(Chart.DOWNLOADED_BYTES);
                 break;
+            case UPLOADED_BYTES:
+                meter = new SimpleMeter(Chart.UPLOADED_BYTES);
+                break;
+            case PARSED_BYTES:
+                meter = new SimpleMeter(Chart.PARSED_BYTES);
+                break;
+            case DISCONNECTION:
+                meter = new SimpleMeter(Chart.DISCONNECTION);
+                break;
+            case NEW_CONNECTION:
+                meter = new SimpleMeter(Chart.NEW_CONNECTION);
+                break;
             default:
                 meter = null;
                 LOG.error("Wrong meter. PStat will exit.");

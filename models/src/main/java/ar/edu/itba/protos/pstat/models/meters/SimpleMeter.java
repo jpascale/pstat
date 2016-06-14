@@ -32,7 +32,7 @@ public class SimpleMeter implements Meter {
     public void addMetric(Integer metric){
         deque.add(Double.valueOf(metric));
         deque.removeFirst();
-        LOG.info("DownloadedBytesMeter deque status => {} ", deque.size());
+        LOG.info("Meter deque status => size {} ", deque.size());
         notifyObservers();
     }
 

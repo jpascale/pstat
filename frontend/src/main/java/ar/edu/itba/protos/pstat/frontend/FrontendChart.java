@@ -45,15 +45,15 @@ public class FrontendChart implements Observer<Meter>, Runnable {
 
         cp = new ChartPanel(chart);
 
-        frame.getContentPane().add("hola", cp);
+        frame.getContentPane().add("Chart", cp);
     }
 
     @Override
     public void handleUpdate(Meter data) {
-        LOG.info("Handle update called in DownloadedBytesChart");
+        LOG.info("Handle update called in FrontendChart");
 
         DefaultXYDataset ds = new DefaultXYDataset();
-        ds.addSeries("test", data.getMetricArray());
+        ds.addSeries(name, data.getMetricArray());
 
         JFreeChart chart = ChartFactory.createXYLineChart(name,
                 "", y, ds, PlotOrientation.VERTICAL, true, true,
@@ -82,7 +82,7 @@ public class FrontendChart implements Observer<Meter>, Runnable {
 
         double[][] data = { {0.1, 0.2, 0.3}, {1, 2, 3} };
 
-        ds.addSeries("series1", data);
+        ds.addSeries("name", data);
 
         return ds;
     }
