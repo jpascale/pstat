@@ -20,25 +20,27 @@ public class FrontendChart implements Observer<Meter>, Runnable {
 
     private JFrame frame;
     private ChartPanel cp;
+    private final String name;
+    private final String y;
 
-    public FrontendChart(){
-
+    public FrontendChart(String name, String y){
+        this.name = name;
+        this.y = y;
     }
 
     @Override
     public void run() {
         LOG.info("Calling run method.");
 
-        frame = new JFrame("Downloaded bytes chart");
+        frame = new JFrame(name);
 
         frame.setSize(600, 400);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        //TODO:REMOVE
 
         XYDataset ds = createDataset();
-        JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
-                "x", "y", ds, PlotOrientation.VERTICAL, true, true,
+        JFreeChart chart = ChartFactory.createXYLineChart(name,
+                "", y, ds, PlotOrientation.VERTICAL, true, true,
                 false);
 
         cp = new ChartPanel(chart);
@@ -53,8 +55,8 @@ public class FrontendChart implements Observer<Meter>, Runnable {
         DefaultXYDataset ds = new DefaultXYDataset();
         ds.addSeries("test", data.getMetricArray());
 
-        JFreeChart chart = ChartFactory.createXYLineChart("Test Chart",
-                "x", "y", ds, PlotOrientation.VERTICAL, true, true,
+        JFreeChart chart = ChartFactory.createXYLineChart(name,
+                "", y, ds, PlotOrientation.VERTICAL, true, true,
                 false);
 
         LOG.info("New chart created");

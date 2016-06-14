@@ -57,7 +57,7 @@ public class Main {
 
 
         try {
-            final FrmMain frmMain = new FrmMain();
+            final FrmMain frmMain = new FrmMain(display.getName(), display.getY());
             frmMain.start();
 
             final PStatProtocol pstatProtocol = new PStatProtocol(display);

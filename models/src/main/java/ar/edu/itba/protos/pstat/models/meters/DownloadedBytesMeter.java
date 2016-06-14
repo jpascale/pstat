@@ -1,4 +1,4 @@
-package ar.edu.itba.protos.pstat.models.meters;
+/*package ar.edu.itba.protos.pstat.models.meters;
 
 import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
@@ -75,3 +75,4 @@ public class DownloadedBytesMeter implements Meter {
             }
         }
 }
+*/
