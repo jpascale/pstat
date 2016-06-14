@@ -5,9 +5,9 @@ import ar.edu.itba.protos.pstat.configuration.Chart;
 import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
-import ar.edu.itba.protos.pstat.models.meters.DownloadedBytesMeter;
 import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
+import ar.edu.itba.protos.pstat.models.meters.SimpleMeter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +29,7 @@ public class PStatProtocol implements Protocol {
 
         switch (chart) {
             case DOWNLOADED_BYTES:
-                meter = new DownloadedBytesMeter();
+                meter = new SimpleMeter(Chart.DOWNLOADED_BYTES);
                 break;
             default:
                 meter = null;
@@ -69,7 +69,7 @@ public class PStatProtocol implements Protocol {
     }
 
     private void handleMeterUpdate(Metric metric) {
-        meter.addMetric(metric.getDownloadedBytes());
+        meter.addMetric(metric.getMetric(chart));
     }
 
     public void setDownloadedBytesMeterObserver(Observer<Meter> obs){
