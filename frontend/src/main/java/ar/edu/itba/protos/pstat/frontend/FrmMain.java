@@ -6,7 +6,6 @@ public class FrmMain {
     private DownloadedBytesChart downloadedBytesChart;
 
     public FrmMain(){
-
         downloadedBytesChart = new DownloadedBytesChart();
     }
 

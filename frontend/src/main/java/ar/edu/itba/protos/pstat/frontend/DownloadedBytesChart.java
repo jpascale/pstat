@@ -1,8 +1,8 @@
 package ar.edu.itba.protos.pstat.frontend;
 
 
+import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
-import ar.edu.itba.protos.pstat.models.DownloadedBytesMeter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 
-public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Runnable {
+public class DownloadedBytesChart implements Observer<Meter>, Runnable {
 
     private static final Logger LOG = LoggerFactory.getLogger(DownloadedBytesChart.class.getSimpleName());
 
@@ -47,7 +47,7 @@ public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Run
     }
 
     @Override
-    public void handleUpdate(DownloadedBytesMeter data) {
+    public void handleUpdate(Meter data) {
         LOG.info("Handle update called in DownloadedBytesChart");
 
         DefaultXYDataset ds = new DefaultXYDataset();

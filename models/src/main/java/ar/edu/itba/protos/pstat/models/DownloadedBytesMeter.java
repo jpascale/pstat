@@ -16,7 +16,7 @@ public class DownloadedBytesMeter implements Meter {
     private static final Integer DEQUE_MAX_ELEMENTS = 20;
     private static final Double ZERO = 0.0;
 
-    private final List<Observer<DownloadedBytesMeter>> observerList = new ArrayList<>();
+    private final List<Observer<Meter>> observerList = new ArrayList<>();
     private final Deque<Double> deque;
 
     public DownloadedBytesMeter(){

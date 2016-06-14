@@ -1,6 +1,7 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 
+import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
 import ar.edu.itba.protos.pstat.models.DownloadedBytesMeter;
@@ -59,7 +60,7 @@ public class PStatProtocol implements Protocol {
         downloadedBytesMeter.addMetric(metric.getDownloadedBytes());
     }
 
-    public void setDownloadedBytesMeterObserver(Observer<DownloadedBytesMeter> obs){
+    public void setDownloadedBytesMeterObserver(Observer<Meter> obs){
         downloadedBytesMeter.addObserver(obs);
     }
 }
