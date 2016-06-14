@@ -14,7 +14,7 @@ import java.util.List;
 public class SimpleMeter implements Meter {
 
     private static final Logger LOG = LoggerFactory.getLogger(SimpleMeter.class.getSimpleName());
-    private static final Integer DEQUE_MAX_ELEMENTS = 20;
+    private static final Integer DEQUE_MAX_ELEMENTS = 40;
     private static final Double ZERO = 0.0;
 
     private final List<Observer<Meter>> observerList = new ArrayList<>();
