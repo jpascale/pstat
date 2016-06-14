@@ -62,7 +62,7 @@ public class Main {
             final FrmMain frmMain = new FrmMain();
             frmMain.start();
 
-            final PStatProtocol pstatProtocol = new PStatProtocol();
+            final PStatProtocol pstatProtocol = new PStatProtocol(display);
             pstatProtocol.setDownloadedBytesMeterObserver(frmMain.getDownloadedBytesChart());
 
             final MetricsClient mc = new MetricsClient(metricsIp, metricsPort, pstatProtocol);

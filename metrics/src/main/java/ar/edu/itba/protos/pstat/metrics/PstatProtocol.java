@@ -1,6 +1,7 @@
 package ar.edu.itba.protos.pstat.metrics;
 
 
+import ar.edu.itba.protos.pstat.configuration.Chart;
 import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
@@ -19,12 +20,23 @@ public class PStatProtocol implements Protocol {
     private final PStatParser parser;
 
     private Integer errCount = 0;
-
+    private Chart chart;
     private final Meter meter;
 
-    public PStatProtocol(){
+    public PStatProtocol(Chart chart){
         parser = new PStatParser();
-        meter = new DownloadedBytesMeter();
+        this.chart = chart;
+
+        switch (chart) {
+            case DOWNLOADED_BYTES:
+                meter = new DownloadedBytesMeter();
+                break;
+            default:
+                meter = null;
+                LOG.error("Wrong meter. PStat will exit.");
+                System.exit(1);
+                break;
+        }
     }
 
     @Override
