@@ -86,7 +86,7 @@ public class MetricsClient implements Runnable {
             }
 
             //System.out.println("Received: " + new String(readBuf.array(), 0, totalBytesRcvd));
-            //TODO: Parse and send received to protocol.
+
             LOG.info("Response received from server, proceed to call handler");
             final String response = new String(readBuf.array(), 0, totalBytesRcvd);
 

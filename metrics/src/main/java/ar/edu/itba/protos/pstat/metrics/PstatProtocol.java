@@ -8,6 +8,7 @@ import ar.edu.itba.protos.pstat.interfaces.Protocol;
 import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
 import ar.edu.itba.protos.pstat.models.meters.SimpleMeter;
+import ar.edu.itba.protos.pstat.models.meters.VaryingMeter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,6 +43,12 @@ public class PStatProtocol implements Protocol {
                 break;
             case NEW_CONNECTION:
                 meter = new SimpleMeter(Chart.NEW_CONNECTION);
+                break;
+            case DOWNLOAD_SPEED:
+                meter = new VaryingMeter(Chart.DOWNLOADED_BYTES);
+                break;
+            case UPLOAD_SPEED:
+                meter = new VaryingMeter(Chart.UPLOADED_BYTES);
                 break;
             default:
                 meter = null;

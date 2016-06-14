@@ -38,6 +38,10 @@ public class Metric {
                 return getDownloadedBytes();
             case PARSED_BYTES:
                 return getParsedBytes();
+            case DOWNLOAD_SPEED:
+                return getDownloadedBytes();
+            case UPLOAD_SPEED:
+                return getUploadedBytes();
             default:
                 return null;
         }

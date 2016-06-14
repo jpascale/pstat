@@ -18,7 +18,7 @@ public class SimpleMeter implements Meter {
     private static final Double ZERO = 0.0;
 
     private final List<Observer<Meter>> observerList = new ArrayList<>();
-    private final Deque<Double> deque;
+    protected final Deque<Double> deque;
     private final Chart criteria;
 
     public SimpleMeter(Chart criteria){
@@ -36,7 +36,6 @@ public class SimpleMeter implements Meter {
         notifyObservers();
     }
 
-    //TODO: Add interface
     public double[][] getMetricArray(){
         LOG.info("getMetric array called");
         long t1 = System.currentTimeMillis();
