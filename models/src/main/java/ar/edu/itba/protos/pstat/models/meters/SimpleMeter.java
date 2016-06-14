@@ -51,11 +51,11 @@ public class SimpleMeter implements Meter {
 
         LOG.info("Spent time to get metric array => {}ms", System.currentTimeMillis() - t1);
 
-        for (int i = 0; i < doubles[1].length; i++) {
+        /*for (int i = 0; i < doubles[1].length; i++) {
             System.out.print(doubles[1][i]);
             System.out.print(" - ");
         }
-        System.out.println("");
+        System.out.println("");*/
 
         return doubles;
     }

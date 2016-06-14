@@ -45,7 +45,8 @@ public class FrontendChart implements Observer<Meter>, Runnable {
 
         cp = new ChartPanel(chart);
 
-        frame.getContentPane().add("Chart", cp);
+        //frame.getContentPane().add("Chart", cp);
+        frame.getContentPane().add(cp);
     }
 
     @Override
