@@ -56,14 +56,12 @@ public class Main {
         LOG.info("Loaded values => ip: {}, port: {}, display: {}", metricsIp, metricsPort, display.toString());
 
 
-
-
         try {
             final FrmMain frmMain = new FrmMain();
             frmMain.start();
 
             final PStatProtocol pstatProtocol = new PStatProtocol(display);
-            pstatProtocol.setDownloadedBytesMeterObserver(frmMain.getDownloadedBytesChart());
+            pstatProtocol.setDownloadedBytesMeterObserver(frmMain.getFrontendChart());
 
             final MetricsClient mc = new MetricsClient(metricsIp, metricsPort, pstatProtocol);
 

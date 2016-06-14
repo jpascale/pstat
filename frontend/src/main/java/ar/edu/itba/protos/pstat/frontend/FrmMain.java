@@ -3,10 +3,10 @@ package ar.edu.itba.protos.pstat.frontend;
 import javax.swing.*;
 
 public class FrmMain {
-    private DownloadedBytesChart downloadedBytesChart;
+    private FrontendChart downloadedBytesChart;
 
     public FrmMain(){
-        downloadedBytesChart = new DownloadedBytesChart();
+        downloadedBytesChart = new FrontendChart();
     }
 
     public void start(){
@@ -14,7 +14,7 @@ public class FrmMain {
         SwingUtilities.invokeLater(downloadedBytesChart);
     }
 
-    public DownloadedBytesChart getDownloadedBytesChart() {
+    public FrontendChart getFrontendChart() {
         return downloadedBytesChart;
     }
 }

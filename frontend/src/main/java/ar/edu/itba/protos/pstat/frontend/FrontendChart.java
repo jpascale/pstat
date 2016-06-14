@@ -14,14 +14,14 @@ import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 
-public class DownloadedBytesChart implements Observer<Meter>, Runnable {
+public class FrontendChart implements Observer<Meter>, Runnable {
 
-    private static final Logger LOG = LoggerFactory.getLogger(DownloadedBytesChart.class.getSimpleName());
+    private static final Logger LOG = LoggerFactory.getLogger(FrontendChart.class.getSimpleName());
 
     private JFrame frame;
     private ChartPanel cp;
 
-    public DownloadedBytesChart(){
+    public FrontendChart(){
 
     }
 
