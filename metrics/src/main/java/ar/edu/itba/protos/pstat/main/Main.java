@@ -56,6 +56,8 @@ public class Main {
         LOG.info("Loaded values => ip: {}, port: {}, display: {}", metricsIp, metricsPort, display.toString());
 
 
+
+
         try {
             final FrmMain frmMain = new FrmMain();
             frmMain.start();
@@ -69,8 +71,6 @@ public class Main {
 
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
             executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
-
-            //new FrmMain().start();
 
         } catch (IOException e){
             e.printStackTrace();

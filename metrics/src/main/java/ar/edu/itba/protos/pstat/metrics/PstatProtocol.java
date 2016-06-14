@@ -20,7 +20,7 @@ public class PStatProtocol implements Protocol {
 
     private Integer errCount = 0;
 
-    private final DownloadedBytesMeter downloadedBytesMeter;
+    private final Meter downloadedBytesMeter;
 
     public PStatProtocol(){
         parser = new PStatParser();
