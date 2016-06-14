@@ -1,5 +1,6 @@
 package ar.edu.itba.protos.pstat.main;
 
+import ar.edu.itba.protos.pstat.configuration.Chart;
 import ar.edu.itba.protos.pstat.configuration.Configuration;
 import ar.edu.itba.protos.pstat.frontend.FrmMain;
 import ar.edu.itba.protos.pstat.metrics.MetricsClient;
@@ -51,8 +52,9 @@ public class Main {
 
         final String metricsIp = config.getValue(Configuration.PSTAT_METRICS_IP).toString();
         final int metricsPort = config.getValue(Configuration.PSTAT_METRICS_PORT).asInt();
+        final Chart display = Chart.getChart(config.getValue(Configuration.PSTAT_DISPLAY).toString());
+        LOG.info("Loaded values => ip: {}, port: {}, display: {}", metricsIp, metricsPort, display.toString());
 
-        LOG.info("Loaded values => ip: {}, port: {}", metricsIp, metricsPort);
 
         try {
             final FrmMain frmMain = new FrmMain();

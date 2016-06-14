@@ -21,8 +21,8 @@ public class DownloadedBytesChart implements Observer<DownloadedBytesMeter>, Run
     private JFrame frame;
     private ChartPanel cp;
 
-    public DownloadedBytesChart(JFrame frame){
-        this.frame = frame;
+    public DownloadedBytesChart(){
+
     }
 
     @Override

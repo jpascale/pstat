@@ -1,6 +1,6 @@
 package ar.edu.itba.protos.pstat.models;
 
-import ar.edu.itba.protos.pstat.interfaces.Observable;
+import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +10,7 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-public class DownloadedBytesMeter implements Observable {
+public class DownloadedBytesMeter implements Meter {
 
     private static final Logger LOG = LoggerFactory.getLogger(DownloadedBytesMeter.class.getSimpleName());
     private static final Integer DEQUE_MAX_ELEMENTS = 20;
