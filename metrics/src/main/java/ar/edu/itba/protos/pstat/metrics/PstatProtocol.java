@@ -5,7 +5,7 @@ import ar.edu.itba.protos.pstat.configuration.Chart;
 import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
 import ar.edu.itba.protos.pstat.interfaces.Protocol;
-import ar.edu.itba.protos.pstat.models.DownloadedBytesMeter;
+import ar.edu.itba.protos.pstat.models.meters.DownloadedBytesMeter;
 import ar.edu.itba.protos.pstat.models.Metric;
 import ar.edu.itba.protos.pstat.models.PStatParser;
 import org.slf4j.Logger;

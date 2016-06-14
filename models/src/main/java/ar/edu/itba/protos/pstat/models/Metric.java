@@ -1,5 +1,6 @@
 package ar.edu.itba.protos.pstat.models;
 
+import ar.edu.itba.protos.pstat.configuration.Chart;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,6 +24,23 @@ public class Metric {
         this.parsedBytes = builder.parsedBytes;
 
         LOG.info("Creating Metric: builder => {}", builder);
+    }
+
+    public Integer getMetric(Chart chart){
+        switch(chart){
+            case NEW_CONNECTION:
+                return getNewConnection();
+            case DISCONNECTION:
+                return getDisconnection();
+            case UPLOADED_BYTES:
+                return getUploadedBytes();
+            case DOWNLOADED_BYTES:
+                return getDownloadedBytes();
+            case PARSED_BYTES:
+                return getParsedBytes();
+            default:
+                return null;
+        }
     }
 
     @Override

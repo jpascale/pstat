@@ -1,4 +1,4 @@
-package ar.edu.itba.protos.pstat.models;
+package ar.edu.itba.protos.pstat.models.meters;
 
 import ar.edu.itba.protos.pstat.interfaces.Meter;
 import ar.edu.itba.protos.pstat.interfaces.Observer;
