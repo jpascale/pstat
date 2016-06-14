@@ -19,8 +19,8 @@ public class Main {
     //Main Logger info
     private static final Logger LOG = LoggerFactory.getLogger(Main.class.getSimpleName());
 
-    //Requests timer in seconds
-    private static final Integer CLIENT_TIMER = 1;
+    //Requests timer in millis
+    private static final Integer CLIENT_TIMER = 500;
 
 
     public static void main (String[] args) {
@@ -68,7 +68,7 @@ public class Main {
 
 
             ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-            executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.SECONDS);
+            executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.MILLISECONDS);
 
         } catch (IOException e){
             e.printStackTrace();
