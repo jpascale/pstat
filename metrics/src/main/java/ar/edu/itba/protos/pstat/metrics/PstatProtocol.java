@@ -20,11 +20,11 @@ public class PStatProtocol implements Protocol {
 
     private Integer errCount = 0;
 
-    private final Meter downloadedBytesMeter;
+    private final Meter meter;
 
     public PStatProtocol(){
         parser = new PStatParser();
-        downloadedBytesMeter = new DownloadedBytesMeter();
+        meter = new DownloadedBytesMeter();
     }
 
     @Override
@@ -57,10 +57,10 @@ public class PStatProtocol implements Protocol {
     }
 
     private void handleMeterUpdate(Metric metric) {
-        downloadedBytesMeter.addMetric(metric.getDownloadedBytes());
+        meter.addMetric(metric.getDownloadedBytes());
     }
 
     public void setDownloadedBytesMeterObserver(Observer<Meter> obs){
-        downloadedBytesMeter.addObserver(obs);
+        meter.addObserver(obs);
     }
 }
