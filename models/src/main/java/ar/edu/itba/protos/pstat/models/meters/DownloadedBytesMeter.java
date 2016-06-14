@@ -33,7 +33,6 @@ public class DownloadedBytesMeter implements Meter {
             notifyObservers();
         }
 
-        //TODO: Add interface
         public double[][] getMetricArray(){
             LOG.info("getMetric array called");
             long t1 = System.currentTimeMillis();

@@ -71,8 +71,8 @@ public class Main {
             executor.scheduleAtFixedRate(mc, 0, CLIENT_TIMER, TimeUnit.MILLISECONDS);
 
         } catch (IOException e){
-            e.printStackTrace();
-            //TODO: Do sth
+            LOG.error("Unable to start PStat.");
+            System.exit(1);
         }
     }
 }

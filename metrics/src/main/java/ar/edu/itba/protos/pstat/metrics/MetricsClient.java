@@ -42,7 +42,6 @@ public class MetricsClient implements Runnable {
                 try {
                     Thread.sleep(1000);
                 }catch (Exception e){
-                    //TODO:Remove
                 }
             }
         }
@@ -55,7 +54,7 @@ public class MetricsClient implements Runnable {
         if ((bytesRcvd = channel.read(readBuf)) == -1) {
             throw new SocketException("Connection closed prematurely");
         }
-        //TODO: Evaluate answer
+
         LOG.info("Received: {}", new String(readBuf.array(), 0, bytesRcvd));
 
     }
@@ -96,8 +95,8 @@ public class MetricsClient implements Runnable {
             //channel.close();
 
         } catch (IOException e){
-            e.printStackTrace();
-            //TODO: Handle
+            LOG.error("Unable to start metrics client");
+            System.exit(1);
         }
         //____________________________________________________
     }

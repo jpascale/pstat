@@ -37,9 +37,6 @@ public class PStatParser {
         return response.startsWith(PREFIX_NEGATIVE);
     }
 
-    public void decideFromResponse(String response){
-        //TODO: Implement
-    }
 
     public Metric parseMetrics(String response){
         LOG.info("Parsing response => \n {}", response);

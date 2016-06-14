@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 public class PStatProtocol implements Protocol {
 
-    //TODO: Create builder for observers;
 
     private static final Logger LOG = LoggerFactory.getLogger(PStatProtocol.class.getSimpleName());
     private static final Integer ERR_TOLERANCE = 5;
