@@ -85,6 +85,7 @@ public class Metric {
                             .uploadedBytes(ZERO)
                             .downloadedBytes(ZERO)
                             .parsedBytes(ZERO)
+                            .rotatedImages(ZERO)
                             .build();
     }
 
@@ -96,14 +97,16 @@ public class Metric {
         private Integer uploadedBytes;
         private Integer downloadedBytes;
         private Integer parsedBytes;
+        private Integer rotatedImages;
 
         public Builder(Integer newConnection, Integer disconnection, Integer uploadedBytes,
-                       Integer downloadedBytes, Integer parsedBytes) {
+                       Integer downloadedBytes, Integer parsedBytes, Integer rotatedImages) {
             this.newConnection = newConnection;
             this.disconnection = disconnection;
             this.uploadedBytes = uploadedBytes;
             this.downloadedBytes = downloadedBytes;
             this.parsedBytes = parsedBytes;
+            this.rotatedImages = rotatedImages;
         }
 
         public Builder(){
@@ -117,6 +120,7 @@ public class Metric {
                     ", disconnection=" + disconnection +
                     ", uploadedBytes=" + uploadedBytes +
                     ", downloadedBytes=" + downloadedBytes +
+                    ", rotatedImages=" + rotatedImages +
                     ", parsedBytes=" + parsedBytes +
                     '}';
         }
@@ -143,6 +147,11 @@ public class Metric {
 
         public Builder parsedBytes(Integer parsedBytes) {
             this.parsedBytes = parsedBytes;
+            return this;
+        }
+
+        public Builder rotatedImages(Integer rotatedImages) {
+            this.rotatedImages = rotatedImages;
             return this;
         }
 
